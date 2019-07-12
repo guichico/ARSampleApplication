@@ -1,8 +1,7 @@
 # ARSampleApplication
  Projeto de realidade aumentada
 
-<h5>Utilização:</h5>
-<br />
+<h4>Utilização:</h4>
 ARCore
 <br />
 Cloud Firestore - Firebase
