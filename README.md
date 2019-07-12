@@ -2,7 +2,7 @@
  Projeto de realidade aumentada
 
 <h4>Utilização:</h4>
-ARCore
+Sceneform
 <br />
 Cloud Firestore - Firebase
 <br />

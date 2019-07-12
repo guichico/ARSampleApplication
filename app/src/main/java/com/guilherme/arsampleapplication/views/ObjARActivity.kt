@@ -28,8 +28,11 @@ class ObjARActivity : AppCompatActivity() {
         binding.viewPager.adapter = ViewPagerAdapter(this, objAR.images)
 
         binding.btnTryObjAR.setOnClickListener {
-            if (objectARViewModel.tryObjEnable.value!!)
-                startActivity(Intent(this, ArActivity::class.java))
+            if (objectARViewModel.tryObjEnable.value!!) {
+                var intent = Intent(this, ArActivity::class.java)
+                intent.putExtra("objModel", objAR.modelUri)
+                startActivity(intent)
+            }
         }
 
         objectARViewModel.mayEnableArButton()

@@ -71,6 +71,30 @@
 
                 </LinearLayout>
 
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:orientation="horizontal">
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Author:"
+                            android:textSize="12dp"
+                            android:textColor="@color/black"/>
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{objAR.author}"
+                            android:textSize="12dp"
+                            android:layout_marginLeft="4dp"/>
+
+                </LinearLayout>
+
             </LinearLayout>
 
             <Button

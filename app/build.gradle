@@ -14,6 +14,10 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -37,8 +41,7 @@ dependencies {
 
     implementation 'androidx.core:core-ktx:1.0.2'
     implementation "com.google.android.material:material:1.1.0-alpha07"
-    implementation 'com.google.ar:core:1.10.0'
-    implementation 'de.javagl:obj:0.2.1'
+    implementation "com.google.ar.sceneform.ux:sceneform-ux:1.10.0"
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.google.firebase:firebase-firestore:20.1.0'
     implementation 'org.koin:koin-android-viewmodel:2.0.1'
@@ -50,3 +53,34 @@ dependencies {
 }
 
 apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.ar.sceneform.plugin'
+
+sceneform.asset('armodels/alarm_clock.obj',
+        'default',
+        'armodels/alarm_clock.sfa',
+        'src/main/assets/alarm_clock')
+
+sceneform.asset('armodels/Bee_01.obj',
+        'default',
+        'armodels/Bee_01.sfa',
+        'src/main/assets/Bee_01')
+
+sceneform.asset('armodels/hamburguer.obj',
+        'default',
+        'armodels/hamburguer.sfa',
+        'src/main/assets/hamburguer')
+
+sceneform.asset('armodels/notebook.obj',
+        'default',
+        'armodels/notebook.sfa',
+        'src/main/assets/notebook')
+
+sceneform.asset('armodels/pink_dread.obj',
+        'default',
+        'armodels/pink_dread.sfa',
+        'src/main/assets/pink_dread')
+
+sceneform.asset('armodels/basket.obj',
+        'default',
+        'armodels/basket.sfa',
+        'src/main/assets/basket')
