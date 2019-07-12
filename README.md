@@ -1,7 +1,7 @@
 # ARSampleApplication
  Projeto de realidade aumentada
 
-Utilização:
+<h5>Utilização:</h5>
 <br />
 ARCore
 <br />
