@@ -9,7 +9,7 @@ import com.guilherme.arsampleapplication.databinding.ActivityObjarBinding
 import com.guilherme.arsampleapplication.models.ObjAR
 import com.guilherme.arsampleapplication.viewmodels.ObjARViewModel
 import com.guilherme.arsampleapplication.views.adapters.ViewPagerAdapter
-import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ObjARActivity : AppCompatActivity() {
 

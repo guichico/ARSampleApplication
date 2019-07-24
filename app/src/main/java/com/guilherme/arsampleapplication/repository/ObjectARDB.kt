@@ -2,21 +2,22 @@ package com.guilherme.arsampleapplication.repository
 
 import com.google.firebase.firestore.FirebaseFirestore
 import com.guilherme.arsampleapplication.models.ObjAR
+import io.reactivex.Maybe
 
-class ObjectARDB : ObjARDataSource {
+class ObjectARDB(val db: FirebaseFirestore) {
 
-    override fun listAll(success: (List<ObjAR>) -> Unit, failure: () -> Unit) {
-        val db = FirebaseFirestore.getInstance()
-
-        db.collection("/ObjectsAR").get()
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    task.result?.let {
-                        success(it.toObjects(ObjAR::class.java))
+    fun listAll(): Maybe<List<ObjAR>> {
+        return Maybe.create { emitter ->
+            db.collection("/ObjectsAR").get()
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        task.result?.let {
+                            emitter.onSuccess(it.toObjects(ObjAR::class.java))
+                        }
+                    } else {
+                        emitter.onError(task.exception!!)
                     }
-                } else {
-                    failure()
                 }
-            }
+        }
     }
 }

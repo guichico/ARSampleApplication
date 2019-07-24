@@ -14,14 +14,16 @@ class ObjectsARViewModel(private val objARRepository: ObjARRepository) : ViewMod
         loadingVisibility.postValue(true)
         message.postValue("")
 
-        objARRepository.listAll({
-            objAR.postValue(it)
-            if (it.isEmpty())
-                message.postValue("Lista vazia")
-            loadingVisibility.postValue(false)
-        }, {
-            message.postValue("Erro ao carregar dados")
-            loadingVisibility.postValue(false)
-        })
+        objARRepository.listAll().subscribe(
+            {
+                objAR.postValue(it)
+                if (it.isEmpty())
+                    message.postValue("Lista vazia")
+                loadingVisibility.postValue(false)
+            }, {
+                message.postValue("Erro ao carregar dados")
+                loadingVisibility.postValue(false)
+            }
+        )
     }
 }

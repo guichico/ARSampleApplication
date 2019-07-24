@@ -1,10 +1,13 @@
 package com.guilherme.arsampleapplication.repository
 
 import com.guilherme.arsampleapplication.models.ObjAR
+import io.reactivex.Maybe
 
-class ObjARRepository(private val objectARDB: ObjectARDB) : ObjARDataSource {
+interface ObjARRepository {
+    fun listAll(): Maybe<List<ObjAR>>
+}
 
-    override fun listAll(success: (List<ObjAR>) -> Unit, failure: () -> Unit) {
-        objectARDB.listAll(success, failure)
-    }
+class ObjARRepositoryImpl(private val objectARDB: ObjectARDB) : ObjARRepository {
+
+    override fun listAll(): Maybe<List<ObjAR>> = objectARDB.listAll()
 }
