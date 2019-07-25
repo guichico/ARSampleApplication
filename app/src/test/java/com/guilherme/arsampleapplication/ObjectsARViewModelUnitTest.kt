@@ -1,19 +1,20 @@
 package com.guilherme.arsampleapplication
 
-import com.guilherme.arsampleapplication.viewmodels.ObjectsARViewModel
-import org.junit.Before
-import org.junit.Test
-import org.koin.test.AutoCloseKoinTest
-import org.mockito.MockitoAnnotations
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.guilherme.arsampleapplication.models.ObjAR
 import com.guilherme.arsampleapplication.repository.ObjARRepository
-import io.reactivex.Maybe
-import org.junit.Assert
-import org.junit.rules.TestRule
+import com.guilherme.arsampleapplication.viewmodels.ObjectsARViewModel
+import kotlinx.coroutines.async
+import kotlinx.coroutines.runBlocking
+import org.junit.Assert.*
+import org.junit.Before
 import org.junit.Rule
+import org.junit.Test
+import org.junit.rules.TestRule
+import org.koin.test.AutoCloseKoinTest
 import org.mockito.Mock
-import org.mockito.Mockito
+import org.mockito.Mockito.*
+import org.mockito.MockitoAnnotations.*
 
 class ObjectsARViewModelUnitTest : AutoCloseKoinTest() {
 
@@ -27,17 +28,39 @@ class ObjectsARViewModelUnitTest : AutoCloseKoinTest() {
 
     @Before
     fun setup() {
-        MockitoAnnotations.initMocks(this);
+        initMocks(this);
         objectsARViewModel = ObjectsARViewModel(objARRepository)
     }
 
     @Test
-    fun listObjectsTest() {
-        Mockito.`when`(objARRepository.listAll()).thenReturn(Maybe.just(emptyList()))
+    fun listObjectsTestOk() = runBlocking {
+        var list = listOf(
+            ObjAR("1", "Teste", "teste", listOf("img"), "model.obj", "Teste")
+        )
+
+        `when`(objARRepository.listAll()).thenReturn(list)
 
         objectsARViewModel.listObjects()
 
-        Assert.assertEquals(emptyList<ObjAR>(), objectsARViewModel.objAR.value)
-        Assert.assertEquals("Lista vazia", objectsARViewModel.message.value)
+        assertEquals(list, objectsARViewModel.objAR.value)
+    }
+
+    @Test
+    fun listObjectsTestEmptyList() = runBlocking {
+        `when`(objARRepository.listAll()).thenReturn(emptyList())
+
+        objectsARViewModel.listObjects()
+
+        assertEquals(emptyList<ObjAR>(), objectsARViewModel.objAR.value)
+        assertEquals("Lista vazia", objectsARViewModel.message.value)
+    }
+
+    @Test(expected = java.lang.Exception::class)
+    fun listObjectsTestServiceUnavailable() = runBlocking {
+        `when`(objARRepository.listAll()).thenThrow(Exception::class.java)
+
+        objectsARViewModel.listObjects()
+
+        assertEquals("Erro ao carregar dados", objectsARViewModel.message.value)
     }
 }

@@ -13,7 +13,6 @@ import com.guilherme.arsampleapplication.models.ObjAR
 import com.guilherme.arsampleapplication.viewmodels.ObjectsARViewModel
 import com.guilherme.arsampleapplication.views.adapters.ObjARAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import kotlin.collections.ArrayList
 
 class ObjARFragment : Fragment() {
     private val objectsViewModel: ObjectsARViewModel by viewModel()

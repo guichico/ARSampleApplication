@@ -17,7 +17,6 @@ import com.google.ar.sceneform.rendering.ModelRenderable
 import com.google.ar.sceneform.ux.ArFragment
 import com.google.ar.sceneform.ux.TransformableNode
 import com.guilherme.arsampleapplication.R
-import com.guilherme.arsampleapplication.models.ObjAR
 import kotlinx.android.synthetic.main.activity_ar.*
 
 @RequiresApi(Build.VERSION_CODES.N)
